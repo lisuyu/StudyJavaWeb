@@ -1,0 +1,71 @@
+Tomcat设置
+
+On "Update" action :Redeploy
+On frame deactivation:Update classes and resources
+
+端口：8080已被占用，本地更改为8086端口
+
+
+安装Tomcat
+
+Tomcat的项目结构
+    WEB-INF
+        classes
+        lib
+        web.xml
+
+(发布路径，发布方式一)
+Tomcat 文件夹下 webapps
+    将项目复制在该文件夹下
+    然后在启动Tomcat的情况下，访问localhost:8086/hello/index.html(复制文件夹为：hello)
+    即可访问该项目
+
+    webapps
+        hello
+            index.html
+            WEB-INF
+                classes
+                lib
+                web.xml
+（发布方式二）
+路径：
+    Apache Software Foundation
+        Tomcat8.5
+            conf
+               server.xml
+
+    在server.xml文件中有：
+
+    <Connector connectionTimeout = "20000" port="8090" protocol = "HTTP/1.1" redirectPort="8443" URLEncoding="UTF-8"/>
+    设置默认端口号
+
+    发布的虚拟路径：
+    <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true" xmlNamespaceAware="false" xmlValidation="false">
+        <Context path="/world" docBase="D:\lisuyu_idea_workspace\webTest\TestWeb01" reloadable="true"/>【表示发生变化重新加载，不用重启服务器，使用虚拟路径访问】
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+        不加任何路径的时候，会主动去找这些页面
+
+   关于Tomcat的配置，在发布到服务器上是需要着重研究
+
+   显示文件路径：Tomcat/conf/web.xml
+
+    <servlet>
+           <servlet-name>default</servlet-name>
+           <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+           <init-param>
+               <param-name>debug</param-name>
+               <param-value>0</param-value>
+           </init-param>
+           <init-param>
+               <param-name>listings</param-name>
+               <param-value>true</param-value>
+           </init-param>
+           <load-on-startup>1</load-on-startup>
+       </servlet>
+
+       将listings中的false改为ture

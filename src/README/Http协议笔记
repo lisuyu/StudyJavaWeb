@@ -1,0 +1,53 @@
+Socket s = new Socket("localhost",8086);
+PrintWriter out = new PrintWriter(s.getOutputStream(),true);
+BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+out.println("GET /TestWeb01_war_exploded/reg.html HTTP/1.1");
+out.println("Host: localhost");
+out.println("contentType:text/html");
+out.println();
+String str = null;
+while ((str=reader.readLine())!=null){
+    System.out.println(str);
+}
+
+获取目标网站的页面代码
+
+<form action = "reg" method="post">
+    用户名：<input type="text" name="username"><br>
+    密码：<input type="password" name="password"><br>
+    性别：<input type="radio" name="sex" value="男">男<input type="radio" name="sex" value="女"/>女<br>
+    机关：<select name="address">
+        <option value="内蒙">内蒙</option>
+        <option value="四川">四川</option>
+    </select><br>
+    兴趣：<input type="checkbox" name="interest" value="游戏">游戏
+        <input type = "checkbox" name="interest" value="写作">写作
+    <br>
+    <input type="submit" value="用户注册"/>
+</form>
+</body>
+</html>
+
+以此操作，可以进行爬虫等操作（对得到的超链接进行递归）
+
+404为访问不存在
+
+200为访问成功
+
+还可以使用加参数的方法，访问servlet
+
+验证码的作用就是防止有人恶意发送请求，占用服务器资源，
+只有验证码正确的请求，服务器才会处理
+
+firefox
+
+firebug
+
+缓存问题
+
+使用POST方式传输密码依然不安全，可以通过http协议来获取
+端口镜像，获取所有数据包，获取http相关
+https更加安全，传输数据是使用加密的加密锁
+安全
+
+

@@ -1,0 +1,4 @@
+快捷键：
+
+    分屏：Ctrl+Alt+F2
+    取消分屏：Window/Editor Tabs/Unsplit All

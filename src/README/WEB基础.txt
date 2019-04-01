@@ -1,0 +1,36 @@
+IDEA不用手动添加到服务器
+
+新建使生成的jsp文件：
+
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2019/3/30 0030
+  Time: 11:51
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+  <head>
+    <title>$Title$</title>
+  </head>
+  <body>
+  $END$
+  </body>
+</html>
+
+使用jsp方便的使用Java来编写代码
+
+jsp原理
+    设置虚拟路径，将jsp发布到Tomcat中
+    值得启动Tomcat后就可以访问该程序,这样操作之后才能看到后面的
+    [编译的时候不产生servlet文件，发布到web容器的时候，产生servlet文件，如果是tomcat容器，那么就在Tomcat_path\work\Catalina\localhost\branch\org\apache\jsp下面。]
+    【发布的两种方法】
+    在tomcat\work\Cataline\localhost\ts\org\apache\jsp中有由【jsp】生成的Servlet
+
+    jsp之所以可以访问，是因为jsp的web容器直接将其转换为Servlet
+
+    如果jsp出现错误，页面报错的内容是以Servlet中的错误为准
+
+    jsp:在<%%>中的代码定义在service中
+    在<%! %>中的代码会定义为全局变量，可以在其中写函数

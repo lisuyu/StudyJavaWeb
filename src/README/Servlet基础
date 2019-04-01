@@ -1,0 +1,81 @@
+Servlet基础
+    Servlet可以完成将java程序运行在web环境中
+
+    写一个类让其继承HttpServlet
+    覆盖doGet方法，在doGet方法中加入一些测试程序
+    配置web.xml让改servlet可以访问
+
+TestServlet
+    out.println("<h1>"+request.getContextPath()+"</h1>");
+    out.println("<h1>"+request.getSession().getServletContext().getRealPath("/")+"</h2>");
+
+    输出：
+    /TestWeb01_war_exploded（上下文路径）
+    D:\lisuyu_idea_workspace\webTest\TestWeb01\out\artifacts\TestWeb01_war_exploded\（绝对路径）
+
+   String username = request.getParameter("username");
+   out.println("<h1>hello"+username+"</h1>");
+
+   浏览器：
+   http://localhost:8086/TestWeb01_war_exploded/user?username=321321654654
+
+   输出：hello321321654654
+
+   参数使用&连接
+
+表单：
+    属性：
+        input text 输入框
+        input password：密码框
+        input radio：单选框
+        select option:下拉列表
+        input checkbox:复选框
+        input submit：提交
+
+在提交的checkbox中，当有多个选项时，直接getParameter操作会只能得到一个。
+     request.getParameterValues();返回值为一个数组
+
+发现问题：所有参数都会显示在浏览器
+    修改表单提交方式：
+    <form action="reg" method="post">
+    然后在doPost中，调用doGet
+
+    可以解决问题，但是会发生中文乱码
+
+    tomcat/conf/server.xml中添加的 URIEncoding="UTF-8" 修改了doGet中的请求编码，但doPost的没有修改
+        <Connector port="8080" protocol="HTTP/1.1"
+                   connectionTimeout="20000"
+                   redirectPort="8443"
+                   URIEncoding="UTF-8" />
+    在doGet中添加代码：request.seCharacterEncoding("UTF-8");
+    可以解决
+
+    IE6不一定可以
+
+
+HTTP协议简介
+
+Servlet生命周期：
+web页面（用户请求）web服务器
+
+web服务器-》解析用户请求-》创建servlet-》调用init方法，只会调用一次-》调用service方法（）
+
+就像会默认调用带参数的构造函数一样，当servlet中重载了Init()，会自动调用带（ServletConfig config）参数的Init()
+
+    <servlet>
+        <servlet-name>ScopeServlet</servlet-name>
+        <servlet-class>itat.zttc.servlet.ScopeServlet</servlet-class>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    在web.xml中设置<load-on-start></load-on-start>参数不为0时，当服务器启动时会自动执行该Servlet
+
+字符编码
+    charset
+
+    解决doGet中的中文乱码：tomcat/setvice中增加URIEncoding=UTF-8
+    解决doPost中的中文乱码：获取值之前：request.setCharacterEncoding("UTF-8");[不一定完全解决，取决于浏览器的编码方式（在地址中直接输入参数）]（过滤器）
