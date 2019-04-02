@@ -1,6 +1,7 @@
 package test.usermanager.model;
 
 public class ShopException extends RuntimeException {
+
     public ShopException() {
         super();
     }

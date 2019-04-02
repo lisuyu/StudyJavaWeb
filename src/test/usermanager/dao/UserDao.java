@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDao implements IUserDao {
     @Override
@@ -25,6 +26,7 @@ public class UserDao implements IUserDao {
                 if (resultSet.getInt(1)>0) throw new ShopException("用户已经存在，不能继续添加。");
             }
             sql = "insert into t_user values (null,?,?,?)";
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,user.getUsername());
             preparedStatement.setString(2,user.getPassword());
             preparedStatement.setString(3,user.getNickname());
@@ -47,5 +49,20 @@ public class UserDao implements IUserDao {
     @Override
     public void update(User user) {
 
+    }
+
+    @Override
+    public User load(int id) {
+        return null;
+    }
+
+    @Override
+    public List<User> list() {
+        return null;
+    }
+
+    @Override
+    public User Login(String username, String password) {
+        return null;
     }
 }
