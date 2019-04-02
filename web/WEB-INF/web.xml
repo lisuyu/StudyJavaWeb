@@ -5,7 +5,7 @@
          version="4.0">
     <servlet>
         <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>itat.zttc.servlet.HelloServlet</servlet-class>
+        <servlet-class>test.zttc.servlet.HelloServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
@@ -14,7 +14,7 @@
     
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>itat.zttc.servlet.UserServlet</servlet-class>
+        <servlet-class>test.zttc.servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -23,7 +23,11 @@
 
     <servlet>
     <servlet-name>NumberServlet</servlet-name>
-    <servlet-class>itat.zttc.servlet.NumberServlet</servlet-class>
+    <servlet-class>test.zttc.servlet.NumberServlet</servlet-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>GBK</param-value>
+        </init-param>
 </servlet>
     <servlet-mapping>
         <servlet-name>NumberServlet</servlet-name>
@@ -32,7 +36,7 @@
 
     <servlet>
         <servlet-name>RegServlet</servlet-name>
-        <servlet-class>itat.zttc.servlet.RegisterServlet</servlet-class>
+        <servlet-class>test.zttc.servlet.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegServlet</servlet-name>
@@ -41,7 +45,7 @@
     
     <servlet>
         <servlet-name>ScopeServlet</servlet-name>
-        <servlet-class>itat.zttc.servlet.ScopeServlet</servlet-class>
+        <servlet-class>test.zttc.servlet.ScopeServlet</servlet-class>
         <init-param>
             <param-name>username</param-name>
             <param-value>admin</param-value>
@@ -53,4 +57,13 @@
         <servlet-name>ScopeServlet</servlet-name>
         <url-pattern>/scope</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>CharEncodingFilter</filter-name>
+        <filter-class>test.zttc.filter.CharEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharEncodingFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
 </web-app>

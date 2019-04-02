@@ -1,4 +1,4 @@
-package itat.zttc.servlet;
+package test.zttc.servlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

@@ -11,9 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-<a href="../01/03.jsp">访问03页面</a>
+<a href="../01/03.jsp">访问03页面的相对路径</a>
 <img src="../img/ycy.jpg"/>
-
+<br>
 <a href="/WebTest_war_exploded/01/03.jsp">访问03的绝对路劲</a>
+<img src = "../img/ycy.jpg"/>
+<br>
+<a href="<%=request.getContextPath()%>/01/03.jsp">使用request.getContextPath访问03</a>
 </body>
 </html>

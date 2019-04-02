@@ -64,7 +64,7 @@ web服务器-》解析用户请求-》创建servlet-》调用init方法，只会
 
     <servlet>
         <servlet-name>ScopeServlet</servlet-name>
-        <servlet-class>itat.zttc.servlet.ScopeServlet</servlet-class>
+        <servlet-class>test.zttc.servlet.ScopeServlet</servlet-class>
         <init-param>
             <param-name>username</param-name>
             <param-value>admin</param-value>

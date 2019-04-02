@@ -1,4 +1,4 @@
-package itat.zttc.model;
+package test.zttc.model;
 
 import java.util.ArrayList;
 import java.util.List;

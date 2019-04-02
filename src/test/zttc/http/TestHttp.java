@@ -1,4 +1,4 @@
-package iata.zttc.http;
+package test.zttc.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-<%@ page import="itat.zttc.model.User" %>
+<%@ page import="test.zttc.model.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="itat.zttc.model.UserInit" %><%--
+<%@ page import="test.zttc.model.UserInit" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019/4/1 0001
