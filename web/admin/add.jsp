@@ -16,6 +16,10 @@
     IUserDao userDao = DAOFactory.getUserDao();
     try {
         userDao.add(user);
+%>
+<h2>添加成功</h2><br>
+<a href="addInput.jsp">继续添加</a>&nbsp;<a href="list.jsp">用户列表</a>
+<%
     } catch (Exception e) {
 %>
 <h2 style="color:red">

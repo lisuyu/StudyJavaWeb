@@ -1,3 +1,6 @@
 制定该库的管理员
 
 GRANT ALL ON itat_shop.* to 'itat'@'localhost' IDENTIFIED BY '123456'
+
+
+清空数据库：truncate table t_user

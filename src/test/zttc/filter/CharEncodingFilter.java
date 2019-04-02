@@ -17,10 +17,8 @@ public class CharEncodingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("过滤之前");
         servletRequest.setCharacterEncoding("UTF-8");
         filterChain.doFilter(servletRequest,servletResponse);
-        System.out.println("过滤之后");
     }
 
     @Override
