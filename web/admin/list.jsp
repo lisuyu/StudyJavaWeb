@@ -20,12 +20,19 @@
     List<User> list = new ArrayList<User>();
     list = userDao.list();
 %>
+<jsp:include page="../inc/user_manager_top.jsp"></jsp:include>
 <table align="center" border="1">
     <tr><td>编号</td><td>用户名</td><td>密码</td><td>昵称</td><td>操作</td></tr>
     <%
         for (User user:list){
     %>
-    <tr><td><%=user.getId()%></td><td><%=user.getUsername()%></td><td><%=user.getPassword()%></td><td><%=user.getNickname()%></td></tr>
+    <tr>
+        <td><%=user.getId()%></td>
+        <td><%=user.getUsername()%></td>
+        <td><%=user.getPassword()%></td>
+        <td><%=user.getNickname()%></td>
+        <td><a href="">删除</a>&nbsp;<a href="">更新</a></td>
+    </tr>
     <%
         }
     %>

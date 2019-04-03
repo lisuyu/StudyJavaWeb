@@ -1,6 +1,9 @@
-<%@ page import="test.usermanager.model.User" %>
+<%@ page import="test.usermanager.dao.DAOFactory" %>
 <%@ page import="test.usermanager.dao.IUserDao" %>
-<%@ page import="test.usermanager.dao.DAOFactory" %><%--
+<%@ page import="test.usermanager.model.User" %>
+<%@ page import="test.usermanager.util.ValidateUtil" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019/4/2 0002
@@ -13,6 +16,13 @@
     user.setUsername(request.getParameter("username"));
     user.setPassword(request.getParameter("password"));
     user.setNickname(request.getParameter("nickname"));
+    boolean validate = true;
+    validate = ValidateUtil.validateNull(request,new String[]{"username","password","nickname"});
+    if (!validate){
+%>
+        <jsp:forward page="addInput.jsp"></jsp:forward>
+<%
+    }
     IUserDao userDao = DAOFactory.getUserDao();
     try {
         userDao.add(user);
