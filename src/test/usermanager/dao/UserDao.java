@@ -50,6 +50,7 @@ public class UserDao implements IUserDao {
             String sql = "delete from t_user where id=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,id);
+            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {

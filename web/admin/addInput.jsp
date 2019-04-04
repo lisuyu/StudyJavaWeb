@@ -11,7 +11,9 @@
     <title>添加用户</title>
 </head>
 <body>
-<jsp:include page="../inc/user_manager_top.jsp"></jsp:include>
+<jsp:include page="../inc/user_manager_top.jsp">
+    <jsp:param name="op" value="添加"/>
+</jsp:include>
 <%!
    public static String processNull(Object o){
        if (o==null)
@@ -19,7 +21,7 @@
        return (String)o;
    }
 %>
-<form action="add.jsp" method="get">
+<form action="add.jsp" method="post">
     <table align="center" width="400" border="1">
         <tr>
             <td>用户名</td><td><input type="text" name="username" value="<%=processNull(request.getParameter("username"))%>">

@@ -12,6 +12,7 @@ public class ValidateUtil {
             String value = request.getParameter(field);
             if (value==null||"".equals(value.trim())) {
                 errorMsg.put(field, field + "不能为空");
+                System.out.println(field+"为空了！");
                 validate = false;
             }
         }

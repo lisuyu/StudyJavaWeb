@@ -18,6 +18,7 @@
     user.setNickname(request.getParameter("nickname"));
     boolean validate = true;
     validate = ValidateUtil.validateNull(request,new String[]{"username","password","nickname"});
+    System.out.println("@@@"+validate);
     if (!validate){
 %>
         <jsp:forward page="addInput.jsp"></jsp:forward>
@@ -26,10 +27,8 @@
     IUserDao userDao = DAOFactory.getUserDao();
     try {
         userDao.add(user);
-%>
-<h2>添加成功</h2><br>
-<a href="addInput.jsp">继续添加</a>&nbsp;<a href="list.jsp">用户列表</a>
-<%
+        response.sendRedirect("list.jsp");//客户端跳转，避免重复提交，添加
+        return;
     } catch (Exception e) {
 %>
 <h2 style="color:red">
