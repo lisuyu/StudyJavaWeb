@@ -15,14 +15,13 @@ public class AdminCheckFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest)servletRequest;
-        HttpSession session = req.getSession();
-        HttpServletResponse resp = (HttpServletResponse)servletResponse;
-        User u = (User) session.getAttribute("loginUser");
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest)servletRequest;
+        HttpServletResponse response = (HttpServletResponse)servletResponse;
+        HttpSession session = request.getSession();
+        User u = (User)session.getAttribute("loginUser");
         if (u==null){
-            resp.sendRedirect(req.getContextPath()+"/admin/loginInput.jsp");
+            response.sendRedirect(request.getContextPath()+"/loginInput.jsp");
         }
         filterChain.doFilter(servletRequest,servletResponse);
     }

@@ -26,7 +26,7 @@
     <servlet-class>test.zttc.servlet.NumberServlet</servlet-class>
         <init-param>
             <param-name>encoding</param-name>
-            <param-value>GBK</param-value>
+            <param-value>UTF-8</param-value>
         </init-param>
 </servlet>
     <servlet-mapping>
@@ -68,13 +68,11 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>AdminCheckFilter</filter-name>
+        <filter-name>adminCheckFilterlter</filter-name>
         <filter-class>test.usermanager.filter.AdminCheckFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>AdminCheckFilter</filter-name>
+        <filter-name>adminCheckFilterlter</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
-
-
 </web-app>
