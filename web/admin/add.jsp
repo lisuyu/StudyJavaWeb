@@ -18,7 +18,6 @@
     user.setNickname(request.getParameter("nickname"));
     boolean validate = true;
     validate = ValidateUtil.validateNull(request,new String[]{"username","password","nickname"});
-    System.out.println("@@@"+validate);
     if (!validate){
 %>
         <jsp:forward page="addInput.jsp"></jsp:forward>

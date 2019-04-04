@@ -20,7 +20,9 @@
     List<User> list = new ArrayList<User>();
     list = userDao.list();
 %>
-<jsp:include page="../inc/user_manager_top.jsp"></jsp:include>
+<jsp:include page="../inc/user_manager_top.jsp">
+    <jsp:param name="op" value="列表"/>
+</jsp:include>
 <table align="center" border="1">
     <tr><td>编号</td><td>用户名</td><td>密码</td><td>昵称</td><td>操作</td></tr>
     <%

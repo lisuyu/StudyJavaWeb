@@ -158,7 +158,7 @@ public class UserDao implements IUserDao {
                 user.setNickname(resultSet.getString("nickname"));
             }
             if (user==null) throw new ShopException("用户名不存在");
-            if (user.getPassword().equals(password)) throw new ShopException("密码不正确！");
+            if (!user.getPassword().equals(password)) throw new ShopException("密码不正确！");
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
