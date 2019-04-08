@@ -22,6 +22,7 @@ public class AdminCheckFilter implements Filter {
         User u = (User)session.getAttribute("loginUser");
         if (u==null){
             response.sendRedirect(request.getContextPath()+"/loginInput.jsp");
+            return;
         }
         filterChain.doFilter(servletRequest,servletResponse);
     }

@@ -6,6 +6,16 @@ public class User {
     private String password;
     private String nickname;
 
+    /*
+    用户的状态，0表示停用，1表示启用
+    * */
+    private int status;
+
+    /*
+    用户的类型，0表示普通用户，1表示管理员
+    * */
+    private int type;
+
     public int getId() {
         return id;
     }
@@ -38,6 +48,22 @@ public class User {
         this.nickname = nickname;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public User(String username, String password, String nickname) {
         this.username = username;
         this.password = password;
@@ -47,9 +73,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
+                ", status=" + status +
+                ", type=" + type +
                 '}';
     }
 

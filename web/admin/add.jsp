@@ -16,6 +16,8 @@
     user.setUsername(request.getParameter("username"));
     user.setPassword(request.getParameter("password"));
     user.setNickname(request.getParameter("nickname"));
+    user.setStatus(0);
+    user.setType(0);
     boolean validate = true;
     validate = ValidateUtil.validateNull(request,new String[]{"username","password","nickname"});
     if (!validate){

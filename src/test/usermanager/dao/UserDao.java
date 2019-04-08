@@ -26,11 +26,13 @@ public class UserDao implements IUserDao {
             while (resultSet.next()){
                 if (resultSet.getInt(1)>0) throw new ShopException("用户已经存在，不能继续添加。");
             }
-            sql = "insert into t_user values (null,?,?,?)";
+            sql = "insert into t_user values (null,?,?,?,?,?)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,user.getUsername());
             preparedStatement.setString(2,user.getPassword());
             preparedStatement.setString(3,user.getNickname());
+            preparedStatement.setInt(4,user.getStatus());
+            preparedStatement.setInt(5,user.getType());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,6 +49,8 @@ public class UserDao implements IUserDao {
         PreparedStatement preparedStatement = null;
         try {
             connection = DBUtil.getConnection();
+            User user = load(id);
+            if (user.getUsername().equals("admin")) throw new ShopException("超级管理员账号不可删除");
             String sql = "delete from t_user where id=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,id);
@@ -65,11 +69,13 @@ public class UserDao implements IUserDao {
         PreparedStatement preparedStatement = null;
         try {
             connection = DBUtil.getConnection();
-            String sql = "update t_user set password=?,nickname=? where id=?";
+            String sql = "update t_user set password=?,nickname=?,status=?,type=? where id=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,user.getPassword());
             preparedStatement.setString(2,user.getNickname());
-            preparedStatement.setInt(3,user.getId());
+            preparedStatement.setInt(3,user.getStatus());
+            preparedStatement.setInt(4,user.getType());
+            preparedStatement.setInt(5,user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,6 +103,8 @@ public class UserDao implements IUserDao {
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setNickname(resultSet.getString("nickname"));
+                user.setStatus(resultSet.getInt("status"));
+                user.setType(resultSet.getInt("type"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,6 +134,8 @@ public class UserDao implements IUserDao {
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setNickname(resultSet.getString("nickname"));
+                user.setStatus(resultSet.getInt("status"));
+                user.setType(resultSet.getInt("type"));
                 list.add(user);
             }
         } catch (SQLException e) {
@@ -156,9 +166,12 @@ public class UserDao implements IUserDao {
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setNickname(resultSet.getString("nickname"));
+                user.setStatus(resultSet.getInt("status"));
+                user.setType(resultSet.getInt("type"));
             }
             if (user==null) throw new ShopException("用户名不存在");
             if (!user.getPassword().equals(password)) throw new ShopException("密码不正确！");
+            if (user.getStatus()==0) throw new ShopException("此用户已停用！");
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {

@@ -1,5 +1,6 @@
 <%@ page import="test.usermanager.dao.IUserDao" %>
-<%@ page import="test.usermanager.dao.DAOFactory" %><%--
+<%@ page import="test.usermanager.dao.DAOFactory" %>
+<%@ page import="java.io.IOException" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019/4/3 0003
@@ -8,9 +9,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    int id = Integer.parseInt(request.getParameter("id"));
-    IUserDao userDao = DAOFactory.getUserDao();
-    System.out.println(id);
-    userDao.delete(id);
-    response.sendRedirect("list.jsp");
+    try {
+        int id = Integer.parseInt(request.getParameter("id"));
+        IUserDao userDao = DAOFactory.getUserDao();
+        System.out.println(id);
+        userDao.delete(id);
+        response.sendRedirect("list.jsp");
+    } catch (Exception e) {
+%>
+<h2 style="color:red">
+    出现异常：<%=e.getMessage()%>
+</h2>
+<%
+    }
 %>
